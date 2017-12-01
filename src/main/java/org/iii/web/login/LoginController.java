@@ -28,7 +28,53 @@ public class LoginController {
 	@Resource(name = "LoginService")
 	LoginService loginService;
 
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
+	
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
+	public ModelAndView selectmap() {
+
+		ModelAndView model = new ModelAndView();
+		System.out.println("loading...");
+		
+		List<Map<String, Object>> allparkinfo= loginService.getallparkinfo();
+		model.addObject("allparkinfo", allparkinfo);
+		List<Map<String, Object>> allststioninfo= loginService.getallstationinfo();
+		model.addObject("allststioninfo", allststioninfo);
+		
+		model.setViewName("../../index");
+		//System.out.println("¢i¢i¢i¢i¢i  ¢i¢i     ¢i¢i    ¢i¢i¢i¢i¢i¢i     ¢i¢i    ¢i¢i");
+		//System.out.println("¢i      ¢i¢i     ¢i¢i  ¢i¢i     ¢i¢i    ¢i¢i   ¢i¢i");
+		//System.out.println("¢i¢i¢i¢i¢i  ¢i¢i     ¢i¢i  ¢i¢i           ¢i¢i¢i¢i¢i¢i");
+		//System.out.println("¢i       ¢i¢i   ¢i¢i   ¢i¢i     ¢i¢i    ¢i¢i  ¢i¢i");
+		//System.out.println("¢i        ¢i¢i¢i¢i¢i      ¢i¢i¢i¢i¢i¢i     ¢i¢i   ¢i¢i¢i");
+		
+		return model;
+
+	}
+	
+	@RequestMapping(value = { "/wind" }, method = RequestMethod.GET)
+	public ModelAndView selectwind() {
+
+		ModelAndView model = new ModelAndView();
+		System.out.println("loading...");
+		
+		List<Map<String, Object>> allparkinfo= loginService.getallparkinfo();
+		model.addObject("allparkinfo", allparkinfo);
+		List<Map<String, Object>> nearstationinfo= loginService.getallnearstationinfo();
+		model.addObject("nearstationinfo", nearstationinfo);
+		System.out.println(nearstationinfo.size());
+		
+		model.setViewName("wind");
+		//System.out.println("¢i¢i¢i¢i¢i  ¢i¢i     ¢i¢i    ¢i¢i¢i¢i¢i¢i     ¢i¢i    ¢i¢i");
+		//System.out.println("¢i      ¢i¢i     ¢i¢i  ¢i¢i     ¢i¢i    ¢i¢i   ¢i¢i");
+		//System.out.println("¢i¢i¢i¢i¢i  ¢i¢i     ¢i¢i  ¢i¢i           ¢i¢i¢i¢i¢i¢i");
+		//System.out.println("¢i       ¢i¢i   ¢i¢i   ¢i¢i     ¢i¢i    ¢i¢i  ¢i¢i");
+		//System.out.println("¢i        ¢i¢i¢i¢i¢i      ¢i¢i¢i¢i¢i¢i     ¢i¢i   ¢i¢i¢i");
+		
+		return model;
+
+	}
+	
+	@RequestMapping(value = { "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView defaultPage() {
 
 		

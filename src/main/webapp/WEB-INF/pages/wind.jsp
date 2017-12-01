@@ -15,6 +15,9 @@
       #map {
         height: 85%;
       }
+      #size {
+        height: 15%;
+      }
       /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
@@ -67,7 +70,25 @@
         
         var infoWindow_marker = new google.maps.InfoWindow();
         
-		<c:forEach items="${allststioninfo}" var="p">
+		<c:forEach items="${allparkinfo}" var="p">
+
+		  latLng = new google.maps.LatLng("${p.lat}", "${p.lng}");
+		  marker = new google.maps.Marker({
+		            position: latLng,
+		            map:map,
+		            //icons: icons["${p.level}"].icon
+		    });
+		  markers.push(marker);	
+		  
+		  //var html = "園區名稱："+"${p.name}"+"<br>"+"每小時預測發電量："+"${p.electricity}";
+		  var html = "園區名稱："+"${p.name}";
+       	  var dital = "${p.l_id}";
+		  //html = html +"<p>地點：" + dataPhoto.position +"</p>";
+        //html = html +"<p>種類：" + dataPhoto.type +"</p>";
+        bindInfoWindow(marker, map, infoWindow_marker, html);
+		</c:forEach>
+		
+		<c:forEach items="${nearstationinfo}" var="p">
 
 		  latLng = new google.maps.LatLng("${p.lat}", "${p.lng}");
 		  marker = new google.maps.Marker({
@@ -75,13 +96,13 @@
 		            map:map,
 		            icon: icons["${p.level}"].icon
 		    });
-		  markers.push(marker);	
+		  markers_ststion.push(marker);	
 		  
 		  var html = "測站名稱："+"${p.name}"+"<br>"+"每小時預測發電量："+"${p.electricity}";
-       	  var dital = "${p.l_id}";
+     	  var dital = "${p.l_id}";
 		  //html = html +"<p>地點：" + dataPhoto.position +"</p>";
-        //html = html +"<p>種類：" + dataPhoto.type +"</p>";
-        bindInfoWindow(marker, map, infoWindow_marker, html);
+      	  //html = html +"<p>種類：" + dataPhoto.type +"</p>";
+      	  bindInfoWindow(marker, map, infoWindow_marker, html);
 		</c:forEach>
 		
     }

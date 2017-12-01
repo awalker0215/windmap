@@ -1,6 +1,7 @@
 package org.iii.web.login;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -63,4 +64,21 @@ public class LoginService {
 	
 	}
 	
+	public List getallparkinfo() {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> allparkinfo = loginRepository.selectallparks();
+		return allparkinfo;
+	}
+	
+	public List getallstationinfo() {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> allstationinfo = loginRepository.selectallstations();
+		return allstationinfo;
+	}
+	
+	public List getallnearstationinfo() {
+		// TODO Auto-generated method stub
+		List<Map<String, Object>> allnearstationinfo = loginRepository.selectnearstations();
+		return allnearstationinfo;
+	}
 }

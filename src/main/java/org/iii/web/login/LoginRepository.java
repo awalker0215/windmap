@@ -83,4 +83,36 @@ public class LoginRepository {
 
 	}
 	
+	public List selectallcultures() {
+		// TODO Auto-generated method stub
+			String sql = "SELECT * FROM culture";
+			List<Map<String, Object>> culture = this.jdbcTemplate.queryForList(sql);
+			
+			return culture;
+	}
+	
+	public List selectallparks() {
+		String sql = "SELECT * FROM park_location";
+		List<Map<String, Object>> park = this.jdbcTemplate.queryForList(sql);			
+		return park;
+
+	}
+	
+	public List selectallstations() {
+		String sql = "SELECT * FROM station_location";
+		List<Map<String, Object>> station = this.jdbcTemplate.queryForList(sql);		
+		return station;
+
+	}
+	
+	public List selectnearstations() {
+		String sql = "SELECT * FROM near_location";// where (name in ('富貴角','蘆竹','觀音','香山','梧棲','龍井','澎湖 ','伸港','埔鹽','芳苑','四湖','貓鼻頭','金門'))";
+		//String sql = "SELECT * FROM station_location where name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ? or name = ?";
+		//String sql = "SELECT * FROM station_location where name in (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		List<Map<String, Object>> nearstation = this.jdbcTemplate.queryForList(sql);
+		System.out.println("fuck"+nearstation.size());//,new Object[] { "富貴角", "蘆竹", "觀音", "香山", "梧棲", "龍井", "澎湖", "伸港", "埔鹽", "芳苑", "四湖", "貓鼻頭", "金門" }
+		return nearstation;
+
+	}
+	
 }
